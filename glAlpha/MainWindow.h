@@ -7,7 +7,8 @@ class MainWindow {
 
 
 private:
-	GLint height, width;
+	GLint winHeight, winWidth, buffHeight,buffWidth;
+	GLFWwindow* mainwindow;
 
 public:
 	
