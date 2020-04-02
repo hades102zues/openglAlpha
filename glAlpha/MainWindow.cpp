@@ -63,6 +63,11 @@ int MainWindow::spool() {
 	}
 
 	glViewport(0, 0, this->buffWidth, this->buffHeight);
+	glEnable(GL_DEPTH);
+
+	glfwSetFramebufferSizeCallback(this->mainwindow, this->framebuffer_size_cb);
+
+
 
 	return 1;
 }
@@ -83,6 +88,10 @@ bool MainWindow::shouldClose() {
 
 GLFWwindow* MainWindow::getWindow() {
 	return this->mainwindow;
+}
+
+void framebuffer_size_cb(GLFWwindow* window, int width, int height) {
+	glViewport(0, 0, width, height);
 }
 
 MainWindow::~MainWindow() {
