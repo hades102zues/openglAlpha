@@ -4,6 +4,8 @@
 #include <stdio.h>
 
 
+
+
 class MainWindow {
 
 
@@ -16,8 +18,10 @@ private:
 public:
 	
 	MainWindow();
-	MainWindow(GLuint wHeight, GLuint wWidth, const char* title);
+	MainWindow(GLuint wWidth, GLuint wHeight, const char* title);
 	int spool();
-	int end();
+	void end();
+	bool shouldClose();
+	GLFWwindow* getWindow();
 	~MainWindow();
 };

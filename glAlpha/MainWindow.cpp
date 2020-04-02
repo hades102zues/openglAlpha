@@ -1,8 +1,7 @@
 /*
 	To-Do:
 		.Register a viewport resize callback
-		.Settup the window screen clearing
-		.
+		.Setup a key handler callback
 
 */
 
@@ -17,7 +16,7 @@ MainWindow::MainWindow() {
 	this->title = "default";
 }
 
-MainWindow::MainWindow(GLuint wHeight, GLuint wWidth, const char* title) {
+MainWindow::MainWindow( GLuint wWidth, GLuint wHeight, const char* title) {
 	this->winHeight =wHeight;
 	this->winWidth = wWidth;
 	this->mainwindow = nullptr;
@@ -32,6 +31,7 @@ int MainWindow::spool() {
 		printf("glfw failed intialization");
 		this->~MainWindow();
 		return -1;
+
 	}
 
 
@@ -51,7 +51,7 @@ int MainWindow::spool() {
 
 	glfwGetFramebufferSize(this->mainwindow, &(this->buffWidth), &(this->buffHeight));
 	glfwMakeContextCurrent(this->mainwindow);
-	glViewport(0, 0, this->buffWidth, this->buffHeight);
+	
 
 
 	glewExperimental = GL_TRUE;
@@ -62,34 +62,27 @@ int MainWindow::spool() {
 		return -1;
 	}
 
-	while (glfwWindowShouldClose(this->mainwindow)) {
+	glViewport(0, 0, this->buffWidth, this->buffHeight);
 
-		glfwPollEvents();
-
-
-		//drawing operations
-
-
-
-		//screenn clearing
-
-		glfwSwapBuffers(this->mainwindow);
-
-
-	}
-
-
+	return 1;
 }
 
 
-int MainWindow::end() {
+void MainWindow::end() {
 
 	glfwTerminate();
 	if (!this->mainwindow) {
 		glfwDestroyWindow(this->mainwindow);
 	}
 
-	
+}
+
+bool MainWindow::shouldClose() {
+	return glfwWindowShouldClose(this->mainwindow);
+}
+
+GLFWwindow* MainWindow::getWindow() {
+	return this->mainwindow;
 }
 
 MainWindow::~MainWindow() {
