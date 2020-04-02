@@ -24,6 +24,7 @@ void Mesh::createMesh() {
 	glBindVertexArray(this->vaoID);
 	glGenBuffers(1, &this->vboID);
 	glBindBuffer(GL_ARRAY_BUFFER, this->vboID);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(this->vertices), this->vertices, GL_STATIC_DRAW);
 
 	glVertexAttribPointer(
 		this->attribLocation,
