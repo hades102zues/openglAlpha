@@ -1,8 +1,4 @@
-/*
-	To-Do:
-		.Setup a key handler callback
 
-*/
 
 
 #include "MainWindow.h"
