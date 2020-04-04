@@ -4,11 +4,6 @@ Include in Main :
 	create a mesh array handler
 	create a mesh item from array data
 
-Shader Program:
-	Create seleton for shader program class.
-	Setup code to pull data from a file.
-	Create Shader Structs
-	Attach shaders to Program
-
- First Test:
+ Test:
+ Draw A Triangle
    

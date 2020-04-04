@@ -42,13 +42,11 @@ void SProgram::compileShader( const char* lines, GLenum type) {
 	if (!success) {
 
 		glGetShaderInfoLog(shaderObject, sizeof(infolog), NULL, infolog);
-		std::cout << "Error compiling shader: " << infolog << std::endl;
-
+		std::cout << "Error compiling shader, "<<type<< ": " << infolog << std::endl;
+		return;
 	}
 
 	glAttachShader(this->sprogram, shaderObject);
-
-
 
 }
 
@@ -60,7 +58,49 @@ void SProgram::linkShaders() {
 	this->compileShader( s_vstruct.c_str(), GL_VERTEX_SHADER);
 	this->compileShader(s_fstruct.c_str(), GL_FRAGMENT_SHADER);
 
+	int success;
+	char infolog[512];
 
+	glLinkProgram(this->sprogram);
+	glGetProgramiv(this->sprogram, GL_LINK_STATUS, &success);
+
+	if (!success) {
+
+		glGetProgramInfoLog(this->sprogram, sizeof(infolog), NULL, infolog);
+		std::cout << "Error Linking Shader Program: " << infolog << std:: endl;
+		return;
+
+	}
+
+	glValidateProgram(this->sprogram);
+	glGetProgramiv(this->sprogram, GL_VALIDATE_STATUS, &success);
+
+	if (!success) {
+
+		glGetProgramInfoLog(this->sprogram, sizeof(infolog), NULL, infolog);
+		std::cout << "Error Validating Shader Program: " << infolog << std::endl;
+		return;
+
+	}
+
+
+}
+
+void SProgram::bindProgram() {
+
+	glUseProgram(this->sprogram);
+
+}
+
+void SProgram::unbindProgram() {
+
+	glUseProgram(0);
+
+}
+
+GLuint SProgram::getProgramID() {
+
+	return this->sprogram;
 
 }
 
@@ -72,6 +112,7 @@ std::string SProgram::readFile(const char* path) {
 
 	if (!filestream.is_open()) {
 		std::cout << "Path to file does not exist.";
+		return "\0";
 	}
 
 	while (!filestream.eof()) {

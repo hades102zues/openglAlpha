@@ -19,6 +19,10 @@ public:
 
 	void compileShader(const char* lines, GLenum type);
 	void linkShaders();
+	void bindProgram();
+	void unbindProgram();
+
+	GLuint getProgramID();
 	std::string readFile(const char* path);
 
 
