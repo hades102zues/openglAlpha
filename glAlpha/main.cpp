@@ -16,12 +16,22 @@ int main() {
 	}
 
 	GLfloat vertices[] = {
-		-0.5f, -1.0f, 0.0f,
-		0.5f, -1.0f, 0.0f,
-		0.0f, 1.0f, 0.0f
+		0.5f, 0.5f, 0.0f,
+		0.5f, -0.5f, 0.0f,
+		-0.5f, -0.5f, 0.0f,
+		-0.5f, 0.5f, 0.0f
 	};
 
-	Mesh* mesh = new Mesh(vertices, 9, 0, 3, GL_FLOAT, sizeof(vertices[0]) * 3, (void*) 0);
+	GLuint indices[] = {
+		0, 1, 3,
+		1, 2, 3
+	};
+
+	Mesh* mesh = new Mesh(
+		vertices, 12, 
+		0, 3, GL_FLOAT, sizeof(vertices[0]) * 3, (void*) 0,
+		indices, 6
+	);
 
 	const char* vPath = "./shaders/shader.vertex";
 	const char* fPath = "./shaders/shader.fragment";
@@ -39,10 +49,10 @@ int main() {
 		//drawing operations
 	    shaderProgram->bindProgram();
 		mesh->bindVAO();
-		glDrawArrays(GL_TRIANGLES, 0, 3);
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
-	/*	shaderProgram->unbindProgram();
-		mesh->unbindVAO();*/
+	  shaderProgram->unbindProgram();
+	  mesh->unbindVAO();
 
 
 		glfwPollEvents();

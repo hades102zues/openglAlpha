@@ -1,8 +1,9 @@
 
-Include in Main :
-	create a vertices array data
-	create a mesh array handler
-	create a mesh item from array data
+EBO incoming:
+  Adjust Mesh to take an ebo
+  Define an EBO array
+  Adjust Drawing to use ebo setup
+
 
  Test:
  Draw A Triangle
