@@ -1,9 +1,11 @@
-
-EBO incoming:
-  Adjust Mesh to take an ebo
-  Define an EBO array
-  Adjust Drawing to use ebo setup
-
+Texture:
+   Texture class :
+       Fill out bind and unbind funcs to use Texture unit [x]
+   Shader Structs :
+        Adjusted to accept textures [x]
+   N/A shaderProgram []
+   Receiving Texture data []
+   Definnning the texture data []
 
  Test:
  Draw A Triangle

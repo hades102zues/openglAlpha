@@ -1,6 +1,10 @@
+#define STB_IMAGE_IMPLEMENTATION
+
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <stdio.h>
+
+
 
 #include "MainWindow.h"
 #include "SProgram.h"
