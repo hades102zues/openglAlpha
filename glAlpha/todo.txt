@@ -4,7 +4,9 @@ Texture:
    Shader Structs :
         Adjusted to accept textures [x]
    N/A shaderProgram []
-   Receiving Texture data []
+   Receiving Texture data [x]
+   Find and download a Texture []
+   Prep Main Test with texture []
    Definnning the texture data []
 
  Test:
