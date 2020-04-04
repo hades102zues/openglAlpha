@@ -2,9 +2,13 @@
 
 
 Mesh::Mesh() {
+	std::cout << "Incomplete Mesh created" << std::endl;
 }
 
-Mesh::Mesh( GLfloat* vertices, int verticeSize, GLuint location, int span, GLenum type, int stride, void* start ) {
+Mesh::Mesh( GLfloat* vertices, int verticeSize,
+					GLuint location, int span, GLenum type, int stride, void* start, 
+					GLuint* indices, int iSize
+) {
 
 	this->vertices = vertices; 
 	this->size = verticeSize;
@@ -14,6 +18,9 @@ Mesh::Mesh( GLfloat* vertices, int verticeSize, GLuint location, int span, GLenu
 	this->stride = stride;
 	this->startingPostion = start;
 
+	this->indices = indices;
+	this->indicesSize = iSize;
+
 	this->createMesh();
 
 }
@@ -22,9 +29,14 @@ void Mesh::createMesh() {
 
 	glGenVertexArrays(1, &this->vaoID);
 	glBindVertexArray(this->vaoID);
+
 	glGenBuffers(1, &this->vboID);
 	glBindBuffer(GL_ARRAY_BUFFER, this->vboID);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(this->vertices[0]) * this->size, this->vertices, GL_STATIC_DRAW);
+
+	glGenBuffers(1, &this->eboID);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->eboID);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(this->indices[0]) * this->indicesSize, this->indices, GL_STATIC_DRAW);
 
 	glVertexAttribPointer(
 		this->attribLocation,

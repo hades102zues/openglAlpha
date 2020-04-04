@@ -37,10 +37,8 @@ int main() {
 
 
 		//drawing operations
-		//shaderProgram->bindProgram();
-		//mesh->bindVAO();
-		glUseProgram(shaderProgram->getProgramID());
-		glBindVertexArray(mesh->getVaoID());
+	    shaderProgram->bindProgram();
+		mesh->bindVAO();
 		glDrawArrays(GL_TRIANGLES, 0, 3);
 
 	/*	shaderProgram->unbindProgram();

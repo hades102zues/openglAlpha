@@ -1,20 +1,32 @@
 #pragma once
 
 #include <GL/glew.h>
+#include <iostream>
 
 class Mesh
 {
 private:
-	GLuint vaoID, vboID, attribLocation;
+	GLuint vaoID;
+	GLuint vboID;
+	GLuint eboID;
+
+	//Vertex Specific
 	GLfloat* vertices;
-	int span, size,stride;
+	GLuint	 attribLocation;
+	int span, size, stride;
 	void* startingPostion;
 	GLenum type;
+
+	//indices specific
+	GLuint* indices;
+	int indicesSize;
 
 public:
 	Mesh();
 	Mesh(GLfloat* vertices, int verticeSize
-		      , GLuint location, int span, GLenum type, int stride, void* start);
+		      , GLuint location, int span, GLenum type, int stride, void* start
+			  , GLuint * indices, int iSize
+	);
 
 	void createMesh();
 	void bindVAO();
