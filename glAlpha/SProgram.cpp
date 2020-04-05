@@ -104,6 +104,10 @@ GLuint SProgram::getProgramID() {
 
 }
 
+GLuint SProgram::getUniformLocation(const char* name) {
+	return glGetUniformLocation(this->sprogram, name);
+}
+
 
 std::string SProgram::readFile(const char* path) {
 	
