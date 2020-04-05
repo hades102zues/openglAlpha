@@ -1,0 +1,14 @@
+Texture:
+   Texture class :
+       Fill out bind and unbind funcs to use Texture unit [x]
+   Shader Structs :
+        Adjusted to accept textures [x]
+   N/A shaderProgram []
+   Receiving Texture data [x]
+   Find and download a Texture []
+   Prep Main Test with texture []
+   Definnning the texture data []
+
+ Test:
+ Draw A Triangle
+   
