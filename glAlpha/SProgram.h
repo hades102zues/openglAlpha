@@ -23,7 +23,7 @@ public:
 	void unbindProgram();
 
 	GLuint getProgramID();
-	GLuint getUniformLocation(const char* name);
+	GLuint getUniformLocation(const GLchar* name);
 	std::string readFile(const char* path);
 
 

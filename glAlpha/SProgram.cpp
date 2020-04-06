@@ -7,7 +7,7 @@ SProgram::SProgram() {
 		printf("Shader Program not created.");
 		return;
 	}
-
+	std::cout << "Insufficient arguements supplied to create a complete shader Program. Please use other overloaded constructor." << std::endl;
 }
 
 SProgram::SProgram(const char* vertexShaderPath, const char* fragmentShaderPath) {
@@ -104,8 +104,10 @@ GLuint SProgram::getProgramID() {
 
 }
 
-GLuint SProgram::getUniformLocation(const char* name) {
+GLuint SProgram::getUniformLocation(const GLchar* name) {
+
 	return glGetUniformLocation(this->sprogram, name);
+
 }
 
 

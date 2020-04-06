@@ -14,7 +14,14 @@
 }
 
 void MainWindow::framebuffersize_cb(GLFWwindow* window, int width, int height) {
-	  glViewport(0, 0, width, height);
+	 
+	MainWindow* localWind = static_cast<MainWindow*> (glfwGetWindowUserPointer(window));
+
+	//we need to reset these in order to keepour projection perspective calculation inline with the new window dimensions
+	localWind->buffHeight = height;
+	localWind->buffWidth = width;
+
+	 glViewport(0, 0, width, height);
  }
 
 
@@ -95,6 +102,17 @@ void MainWindow::end() {
 	if (!this->mainwindow) {
 		glfwDestroyWindow(this->mainwindow);
 	}
+
+}
+
+int MainWindow::getBuffHeight() {
+
+	return this->buffHeight;
+
+}
+int MainWindow::getBuffWidth() {
+
+	return this->buffWidth;
 
 }
 

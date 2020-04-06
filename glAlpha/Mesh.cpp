@@ -2,7 +2,7 @@
 
 
 Mesh::Mesh() {
-	std::cout << "Incomplete Mesh created." << std::endl;
+	std::cout << "Incomplete Mesh created. Please use other overloaded constructor." << std::endl;
 }
 
 Mesh::Mesh(

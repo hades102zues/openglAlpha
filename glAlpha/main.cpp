@@ -3,7 +3,9 @@
 #include <GLFW/glfw3.h>
 #include <stdio.h>
 
-
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+#include "glm/gtc/type_ptr.hpp"
 
 #include "MainWindow.h"
 #include "SProgram.h"
@@ -37,17 +39,37 @@ int main() {
 		vertices, 20, 
 		0, 3, GL_FLOAT, sizeof(vertices[0]) * 5, (void*)0, //vertex attribs
 		indices, 6,
-		2, 2, GL_FLOAT, sizeof(vertices[0]) * 5, (void*)(sizeof(vertices[0]) * 3) //text coord attribs
+		2, 2, GL_FLOAT, sizeof(vertices[0]) * 5, (void*)(sizeof(vertices[0]) * 3) //tex coord attribs
 	);
 
 	//texture here 
 	Texture* container = new Texture("./container.jpg");
 
+
+	//shaders
 	const char* vPath = "./shaders/shader.vertex";
 	const char* fPath = "./shaders/shader.fragment";
-
 	SProgram* shaderProgram = new SProgram(vPath, fPath);
 
+	GLuint modelLoc = shaderProgram->getUniformLocation("model");
+	GLuint projectionLoc = shaderProgram->getUniformLocation("projection");
+	GLuint viewLoc = shaderProgram->getUniformLocation("view");
+
+	glm::mat4 model(1.0f);
+	model = glm::rotate(model, glm::radians(-55.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+
+	glm::mat4 view(1.0f);
+	view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+
+	glm::mat4 projection(1.0f);
+	int winWidth = mainWindow->getBuffWidth();
+	int winHeight = mainWindow->getBuffHeight();
+	projection = glm::perspective(
+		glm::radians(45.0f),
+		(float)winWidth / (float)winHeight,
+		0.1f,
+		100.0f
+	);
 
 	while (!mainWindow->shouldClose()) {
 
@@ -58,8 +80,13 @@ int main() {
 
 		//drawing operations
 	    shaderProgram->bindProgram();
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));// setting comes AFTER you have bound
+		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+		glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
 		container->bindTexture();
 		mesh->bindVAO();
+
+		
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0); //provides info about the indices array
 
 	  //shaderProgram->unbindProgram();

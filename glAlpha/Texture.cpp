@@ -3,7 +3,7 @@
 
 Texture::Texture() {
 
-	std::cout << "Incomplete texture created." << std::endl;
+	std::cout << "Incomplete texture created. Please use other overloaded constructor." << std::endl;
 				
 }
 
@@ -38,7 +38,7 @@ void Texture::loadTexture() {
 	}
 
 	stbi_image_free(data);
-	glBindTexture(GL_TEXTURE_2D, 0);
+	//glBindTexture(GL_TEXTURE_2D, 0);
 
 
 }

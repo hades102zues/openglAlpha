@@ -27,6 +27,8 @@ public:
 
 	int spool();
 	void end();
+	int getBuffHeight();
+	int getBuffWidth();
 	bool shouldClose();
 
 	GLFWwindow* getWindow();
