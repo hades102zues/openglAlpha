@@ -74,10 +74,6 @@ glm::mat4 Camera::getViewMatrix() {
 
 glm::vec3 Camera::getCameraWorldPostion() {
 	
-	glm::mat4 view = this->getViewMatrix();
-	glm::vec4 v4WorldSpaceCamera = glm::inverse(view) * glm::vec4(0.0, 0.0, 0.0, 1.0);
-	glm::vec3 v3WorldSpaceCamera = glm::vec3(v4WorldSpaceCamera);
-
-	return v3WorldSpaceCamera;
+	return this->position;
 
 }
