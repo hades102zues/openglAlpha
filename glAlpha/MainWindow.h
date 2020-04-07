@@ -14,6 +14,8 @@ private:
 	int buffHeight, buffWidth;
 	GLFWwindow* mainwindow;
 	const char* title;
+
+	bool keyPool[1024];
 	
 
 public:

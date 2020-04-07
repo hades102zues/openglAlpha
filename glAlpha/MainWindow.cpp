@@ -10,14 +10,27 @@
 
 	if (key == GLFW_KEY_ESCAPE and action == GLFW_PRESS) {
 		glfwSetWindowShouldClose(localWind->getWindow(), true);
+		return;
 	}
+
+
+	if (key >= 0 && key < 1024) {
+
+		if (action == GLFW_PRESS) {
+			localWind->keyPool[key] = true;
+		}
+		else if (action == GLFW_RELEASE) {
+			localWind->keyPool[key] = false;
+		}
+	}
+
 }
 
 void MainWindow::framebuffersize_cb(GLFWwindow* window, int width, int height) {
 	 
 	MainWindow* localWind = static_cast<MainWindow*> (glfwGetWindowUserPointer(window));
 
-	//we need to reset these in order to keepour projection perspective calculation inline with the new window dimensions
+	//we need to reset these in order to keep our projection perspective calculation inline with the new window dimensions
 	localWind->buffHeight = height;
 	localWind->buffWidth = width;
 
@@ -32,6 +45,10 @@ MainWindow::MainWindow() {
 	this->mainwindow = nullptr;
 	this->title = "default";
 
+	for (int i = 0; i < 1024; i++) {
+		this->keyPool[i] = false;
+	}
+
 }
 
 MainWindow::MainWindow( GLuint wWidth, GLuint wHeight, const char* title) {
@@ -40,6 +57,10 @@ MainWindow::MainWindow( GLuint wWidth, GLuint wHeight, const char* title) {
 	this->winWidth = wWidth;
 	this->mainwindow = nullptr;
 	this->title = title;
+
+	for (int i = 0; i < 1024; i++) {
+		this->keyPool[i] = false;
+	}
 
 }
 
@@ -89,7 +110,6 @@ int MainWindow::spool() {
 
 	glfwSetKeyCallback(this->mainwindow, this->keyinput_window_handler_cb);
     glfwSetFramebufferSizeCallback(this->mainwindow, this->framebuffersize_cb);
-
 
 
 	return 1;
