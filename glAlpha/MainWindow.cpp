@@ -13,7 +13,6 @@
 		return;
 	}
 
-
 	if (key >= 0 && key < 1024) {
 
 		if (action == GLFW_PRESS) {
@@ -22,8 +21,27 @@
 		else if (action == GLFW_RELEASE) {
 			localWind->keyPool[key] = false;
 		}
+
 	}
 
+}
+
+  void MainWindow::mouse_window_handler_cb(GLFWwindow* window, double xpos, double ypos) {
+
+	  MainWindow* localWind = static_cast<MainWindow*> (glfwGetWindowUserPointer(window));
+
+	  if (localWind->mouseFirstClick) {
+
+		  localWind->prevXPos = xpos;
+		  localWind->prevYPos = ypos;
+		  localWind->mouseFirstClick = false;
+
+	  }
+
+	  localWind->xOffset = xpos - localWind->prevXPos;
+	  localWind->yOffset = ypos - localWind->prevYPos;
+	  localWind->prevXPos = xpos;
+	  localWind->prevYPos = ypos;
 }
 
 void MainWindow::framebuffersize_cb(GLFWwindow* window, int width, int height) {
@@ -49,6 +67,10 @@ MainWindow::MainWindow() {
 		this->keyPool[i] = false;
 	}
 
+	this->prevXPos = 300;
+	this->prevYPos = 400;
+	this->mouseFirstClick = false;
+
 }
 
 MainWindow::MainWindow( GLuint wWidth, GLuint wHeight, const char* title) {
@@ -62,6 +84,9 @@ MainWindow::MainWindow( GLuint wWidth, GLuint wHeight, const char* title) {
 		this->keyPool[i] = false;
 	}
 
+	this->prevXPos = wWidth/2;
+	this->prevYPos = wHeight/2;
+	this->mouseFirstClick = false;
 }
 
 
@@ -108,7 +133,9 @@ int MainWindow::spool() {
 	glViewport(0, 0, this->buffWidth, this->buffHeight);
 	glEnable(GL_DEPTH);
 
+	//glfwSetInputMode(this->mainwindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	glfwSetKeyCallback(this->mainwindow, this->keyinput_window_handler_cb);
+	glfwSetCursorPosCallback(this->mainwindow, this->mouse_window_handler_cb);
     glfwSetFramebufferSizeCallback(this->mainwindow, this->framebuffersize_cb);
 
 
