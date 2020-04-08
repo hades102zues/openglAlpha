@@ -11,6 +11,7 @@
 #include "SProgram.h"
 #include "Mesh.h"
 #include "Texture.h"
+#include "Camera.h"
 
 
 
@@ -47,6 +48,7 @@ int main() {
 
 
 	//shaders
+	//------------------------------------------------------------
 	const char* vPath = "./shaders/shader.vertex";
 	const char* fPath = "./shaders/shader.fragment";
 	SProgram* shaderProgram = new SProgram(vPath, fPath);
@@ -56,10 +58,8 @@ int main() {
 	GLuint viewLoc = shaderProgram->getUniformLocation("view");
 
 	glm::mat4 model(1.0f);
-	model = glm::rotate(model, glm::radians(-55.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+	//model = glm::rotate(model, glm::radians(-55.0f), glm::vec3(1.0f, 0.0f, 0.0f));
 
-	glm::mat4 view(1.0f);
-	view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
 
 	glm::mat4 projection(1.0f);
 	int winWidth = mainWindow->getBuffWidth();
@@ -71,17 +71,36 @@ int main() {
 		100.0f
 	);
 
+
+	//Camera
+	//----------------------------------
+	Camera* camera = new Camera();
+	float deltaTime = 0.0f;
+	float lastTime = 0.0f;
+	float currentTime;
+	glm::mat4 view = camera->getViewMatrix();
+
+
 	while (!mainWindow->shouldClose()) {
+		glfwPollEvents();
 
 		//screenn clearing
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
+		//pre-empt
+		currentTime = glfwGetTime();
+		deltaTime = currentTime - lastTime;
+		lastTime = currentTime;
+
+		camera->updateOrientation(mainWindow->getXOffset(), mainWindow->getYOffset());
+		camera->updatePosition(mainWindow->getKeyPool(), deltaTime);
+
 
 		//drawing operations
 	    shaderProgram->bindProgram();
 		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));// setting comes AFTER you have bound
-		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(camera->getViewMatrix()));
 		glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
 		container->bindTexture();
 		mesh->bindVAO();
@@ -95,7 +114,7 @@ int main() {
 	  mesh->unbindVAO();
 
 
-		glfwPollEvents();
+		
 		glfwSwapBuffers(mainWindow->getWindow());
 
 	}

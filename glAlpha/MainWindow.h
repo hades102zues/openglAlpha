@@ -39,6 +39,9 @@ public:
 	int getBuffHeight();
 	int getBuffWidth();
 	bool shouldClose();
+	GLfloat getXOffset();
+	GLfloat getYOffset();
+	bool* getKeyPool();
 
 	GLFWwindow* getWindow();
 

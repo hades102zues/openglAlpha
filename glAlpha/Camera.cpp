@@ -4,10 +4,10 @@
 Camera::Camera() {
 
 	this->front = glm::vec3(0.0f, 0.0f, -1.0f);
-	this->position = glm::vec3(0.0f, 0.0f, 3.0f);
-	this->movespeedMultiplier = 0.5f;
-	this->sensitivity = 0.5;
-	this->pitch = 20.0f ;
+	this->position = glm::vec3(-0.5f, 0.0f, 1.0f);
+	this->movespeedMultiplier = 0.75f;
+	this->sensitivity = .75;
+	this->pitch = 0.0f ;
 	this->yaw = 0.0f;
 
 	this->updateCameraPlane();
@@ -27,9 +27,11 @@ void Camera::updateCameraPlane() {
 
 void Camera::updateOrientation(GLfloat mouseXOffset, GLfloat mouseYOffset	) {
 
+
 	mouseXOffset *= this->sensitivity ;
 	mouseYOffset *= this->sensitivity ;
 
+	
 	this->yaw += mouseXOffset;
 	this->pitch += mouseYOffset;
 
@@ -45,22 +47,22 @@ void Camera::updateOrientation(GLfloat mouseXOffset, GLfloat mouseYOffset	) {
 }
 
 
-void Camera::updatePosition(bool* keyPool) {
+void Camera::updatePosition(bool* keyPool, float deltaTime) {
 
 	if (keyPool[GLFW_KEY_W]) {
-		this->position +=  this->movespeedMultiplier * this->front;
+		this->position +=  deltaTime * this->movespeedMultiplier * this->front;
 	}
 
 	if (keyPool[GLFW_KEY_S]) {
-		this->position -= this->movespeedMultiplier *  this->front;
+		this->position -= deltaTime *  this->movespeedMultiplier *  this->front;
 	}
 
 	if (keyPool[GLFW_KEY_A]) {
-		this->position -= this->movespeedMultiplier *  this->right ;
+		this->position -= deltaTime * this->movespeedMultiplier *  this->right ;
 	}
 
 	if (keyPool[GLFW_KEY_D]) {
-		this->position += this->movespeedMultiplier *  this->right ;
+		this->position += deltaTime *  this->movespeedMultiplier *  this->right ;
 	}
 
 }

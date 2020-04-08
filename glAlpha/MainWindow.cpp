@@ -38,10 +38,14 @@
 
 	  }
 
+
 	  localWind->xOffset = xpos - localWind->prevXPos;
-	  localWind->yOffset = ypos - localWind->prevYPos;
+	  localWind->yOffset = localWind->prevYPos - ypos ;
+
 	  localWind->prevXPos = xpos;
 	  localWind->prevYPos = ypos;
+
+
 }
 
 void MainWindow::framebuffersize_cb(GLFWwindow* window, int width, int height) {
@@ -172,6 +176,23 @@ GLFWwindow* MainWindow::getWindow() {
 }
 
 
+GLfloat MainWindow::getXOffset() {
+	//***GOTCHA*** If we do not reset the values after sending them to the camera then we will get unwanted camera floating!!
+	float outX = this->xOffset;
+	this->xOffset = 0;
+	return  outX;
+}
+
+GLfloat MainWindow::getYOffset() {
+	//***GOTCHA*** If we do not reset the values after sending them to the camera then we will get unwanted camera floating!!
+	float outY = this->yOffset;
+	this->yOffset = 0;
+	return outY;
+}
+
+bool* MainWindow::getKeyPool() {
+	return this->keyPool;
+}
 
 MainWindow::~MainWindow() {
 	this->end();

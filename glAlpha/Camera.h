@@ -22,7 +22,7 @@ public:
 	Camera();
 	void updateCameraPlane();
 	void updateOrientation(GLfloat mouseXOffset, GLfloat mouseYOffset);
-	void updatePosition(bool* keypool);
+	void updatePosition(bool* keyPool, float deltaTime);
 	glm::mat4 getViewMatrix();
 	glm::vec3 getCameraWorldPostion();
 	~Camera();
