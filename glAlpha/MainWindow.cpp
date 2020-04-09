@@ -135,9 +135,10 @@ int MainWindow::spool() {
 	glfwSetWindowUserPointer(this->mainwindow, this);
 
 	glViewport(0, 0, this->buffWidth, this->buffHeight);
-	glEnable(GL_DEPTH);
+	glEnable(GL_DEPTH_TEST);
 
-	//glfwSetInputMode(this->mainwindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	glfwSetInputMode(this->mainwindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
 	glfwSetKeyCallback(this->mainwindow, this->keyinput_window_handler_cb);
 	glfwSetCursorPosCallback(this->mainwindow, this->mouse_window_handler_cb);
     glfwSetFramebufferSizeCallback(this->mainwindow, this->framebuffersize_cb);
