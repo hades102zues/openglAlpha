@@ -42,10 +42,13 @@ void Mesh::createMesh() {
 	glBindBuffer(GL_ARRAY_BUFFER, this->vboID);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(this->vertices[0]) * this->size, this->vertices, GL_STATIC_DRAW);
 
-	glGenBuffers(1, &this->eboID);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->eboID);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(this->indices[0]) * this->indicesSize, this->indices, GL_STATIC_DRAW);
+	if (this->indices != nullptr) {
 
+		glGenBuffers(1, &this->eboID);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->eboID);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(this->indices[0]) * this->indicesSize, this->indices, GL_STATIC_DRAW);
+
+	}
 	//vertex data
 	glVertexAttribPointer(
 		this->attribLocation,

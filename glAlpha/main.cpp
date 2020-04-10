@@ -97,7 +97,7 @@ int main() {
 	Mesh* mesh = new Mesh(
 		vertices, 180, 
 		0, 3, GL_FLOAT, sizeof(vertices[0]) * 5, (void*)0, //vertex attribs
-		indices, 6,
+		nullptr, 0,
 		2, 2, GL_FLOAT, sizeof(vertices[0]) * 5, (void*)(sizeof(vertices[0]) * 3) //tex coord attribs
 	);
 

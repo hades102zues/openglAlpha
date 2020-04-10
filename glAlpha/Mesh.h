@@ -31,6 +31,7 @@ private:
 	
 public:
 	Mesh();
+	
 	Mesh(GLfloat* vertices, int verticeSize
 		      , GLuint location, int span, GLenum type, int stride, void* start
 			  , GLuint * indices, int iSize

@@ -98,6 +98,27 @@ void SProgram::unbindProgram() {
 
 }
 
+void SProgram::setVec2(const char* attribName, glm::vec2 value) {
+
+	GLuint location = this->getUniformLocation(attribName);
+	glUniform2fv(location, 1, glm::value_ptr(value));
+
+}
+
+void SProgram::setVec3(const char* attribName, glm::vec3 value) {
+
+	GLuint location = this->getUniformLocation(attribName);
+	glUniform3fv(location, 1, glm::value_ptr(value));
+
+}
+
+void SProgram::setMat4(const char* attribName, glm::mat4 value) {
+
+	GLuint location = this->getUniformLocation(attribName);
+	glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(value));
+
+}
+
 GLuint SProgram::getProgramID() {
 
 	return this->sprogram;
