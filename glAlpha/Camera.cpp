@@ -5,9 +5,21 @@ Camera::Camera() {
 
 	this->front = glm::vec3(0.0f, 0.0f, -1.0f);
 	this->position = glm::vec3(-0.5f, 0.0f, 1.0f);
-	this->movespeedMultiplier = 0.75f;
-	this->sensitivity = .75;
-	this->pitch = 0.0f ;
+	this->movespeedMultiplier = 2.5f;
+	this->sensitivity = 0.50f;
+	this->pitch = -2.0f ;
+	this->yaw = 0.0f;
+
+	this->updateCameraPlane();
+}
+
+Camera::Camera(glm::vec3 pos) {
+
+	this->front = glm::vec3(0.0f, 0.0f, -1.0f);
+	this->position = pos;
+	this->movespeedMultiplier = 2.5f;
+	this->sensitivity = 0.50f;
+	this->pitch = -2.0f;
 	this->yaw = 0.0f;
 
 	this->updateCameraPlane();

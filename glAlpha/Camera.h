@@ -20,6 +20,7 @@ private:
 
 public:
 	Camera();
+	Camera(glm::vec3 pos);
 	void updateCameraPlane();
 	void updateOrientation(GLfloat mouseXOffset, GLfloat mouseYOffset);
 	void updatePosition(bool* keyPool, float deltaTime);
