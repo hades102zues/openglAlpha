@@ -73,7 +73,7 @@ MainWindow::MainWindow() {
 
 	this->prevXPos = 300;
 	this->prevYPos = 400;
-	this->mouseFirstClick = false;
+	this->mouseFirstClick = true;
 
 }
 
@@ -90,7 +90,7 @@ MainWindow::MainWindow( GLuint wWidth, GLuint wHeight, const char* title) {
 
 	this->prevXPos = wWidth/2;
 	this->prevYPos = wHeight/2;
-	this->mouseFirstClick = false;
+	this->mouseFirstClick = true;
 }
 
 
