@@ -198,6 +198,7 @@ int main() {
 
 			obj_shaderProgram->setVec3("objectColor", glm::vec3(1.0f, 0.5f, 0.31f) );
 			obj_shaderProgram->setVec3("lightColor", glm::vec3(1.0f, 1.0f, 1.0f) );
+			obj_shaderProgram->setVec3("lightPos", lightPos);
 
 			bigSquare->bindVAO();
 				glDrawArrays(GL_TRIANGLES, 0, 36);

@@ -1,7 +1,4 @@
-Texture:
-   Texture class :
-       Binding and unbinding Texture units []
+Diffusion:
+	Update the obj fragment to calculate diffusion.
 
- Test:
- Draw A Triangle
-   
+Speculation:
