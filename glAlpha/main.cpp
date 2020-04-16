@@ -95,7 +95,7 @@ int main() {
 
 	//**GOTCHA**__remember to update the size, stride and starting position values as you change the arrays!!!
 	Mesh* bigSquare = new Mesh(
-		vertices, 180, 
+		vertices, 216, 
 		0, 3, GL_FLOAT, sizeof(vertices[0]) * 6, (void*)0, //vertex attribs
 		nullptr, 0,
 		2, 2, GL_FLOAT, sizeof(vertices[0]) * 6, (void*)(sizeof(vertices[0]) * 3), //tex coord attribs **(deprecated)**
@@ -103,7 +103,7 @@ int main() {
 
 	);
 	Mesh* lightSource = new Mesh(
-		vertices, 180,
+		vertices, 216,
 		0, 3, GL_FLOAT, sizeof(vertices[0]) * 6, (void*)0, //vertex attribs
 		nullptr, 0,
 		2, 2, GL_FLOAT, sizeof(vertices[0]) * 6, (void*)(sizeof(vertices[0]) * 3), //tex coord attribs **(deprecated)**
@@ -153,8 +153,8 @@ int main() {
 	ls_model = glm::scale(ls_model, glm::vec3(0.2f));
 
 	glm::mat4 obj_model = glm::mat4(1.0);
-	obj_model = glm::translate(obj_model, glm::vec3(1.0f, -10.0f, -3.0f) );
-	obj_model = glm::scale(obj_model, glm::vec3(10.0));
+	obj_model = glm::translate(obj_model, glm::vec3(1.0f, -2.0f, -3.0f) );
+	obj_model = glm::scale(obj_model, glm::vec3(4.0));
 
 
 
