@@ -153,7 +153,7 @@ int main() {
 	ls_model = glm::scale(ls_model, glm::vec3(0.2f));
 
 	glm::mat4 obj_model = glm::mat4(1.0);
-	obj_model = glm::translate(obj_model, glm::vec3(1.0f, -2.0f, -3.0f) );
+	obj_model = glm::translate(obj_model, glm::vec3(1.0f, -0.0f, -3.0f) );
 	obj_model = glm::scale(obj_model, glm::vec3(4.0));
 
 
