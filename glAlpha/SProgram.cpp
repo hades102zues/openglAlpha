@@ -98,6 +98,17 @@ void SProgram::unbindProgram() {
 
 }
 
+void SProgram::setFloat(const char* attribName, GLfloat value) {
+
+	GLuint location = this->getUniformLocation(attribName);
+
+	if ((int)location < 0)
+		printf("Supplied attribute : %s is Incorrect or not in use. \n", attribName);
+
+	glUniform1f(location, value );
+
+}
+
 void SProgram::setVec2(const char* attribName, glm::vec2 value) {
 
 	GLuint location = this->getUniformLocation(attribName);

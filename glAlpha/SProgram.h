@@ -24,6 +24,7 @@ public:
 	void bindProgram();
 	void unbindProgram();
 
+	void setFloat(const char* attribName, GLfloat value);
 	void setVec2(const char* attribName, glm::vec2 value);
 	void setVec3(const char* attribName, glm::vec3 value);
 	void setMat4(const char* attribName, glm::mat4 value);

@@ -198,9 +198,15 @@ int main() {
 
 			obj_shaderProgram->setVec3("cameraPos", camera->getCameraWorldPostion());
 
-			obj_shaderProgram->setVec3("objectColor", glm::vec3(1.0f, 0.5f, 0.31f) );
+			//obj_shaderProgram->setVec3("objectColor", glm::vec3(1.0f, 0.5f, 0.31f) );
 			obj_shaderProgram->setVec3("lightColor", glm::vec3(1.0f, 1.0f, 1.0f) );
 			obj_shaderProgram->setVec3("lightPos", lightPos);
+
+			obj_shaderProgram->setVec3("material.ambientFactor", glm::vec3(1.0f, 0.5f, 0.31f));
+			obj_shaderProgram->setVec3("material.diffuseFactor", glm::vec3(1.0f, 0.5f, 0.31f));
+			obj_shaderProgram->setVec3("material.specularFactor", glm::vec3(0.5f));
+			obj_shaderProgram->setFloat("material.shinniness", (GLfloat) 32.0f);
+
 
 			bigSquare->bindVAO();
 				glDrawArrays(GL_TRIANGLES, 0, 36);
