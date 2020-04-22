@@ -147,7 +147,7 @@ int main() {
 
 	//Models
 	//------------------------
-	glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
+	glm::vec3 lightPos(7.0f, 4.2f, 2.0f);
 	glm::mat4 ls_model= glm::mat4(1.0);
 	ls_model = glm::translate(ls_model, lightPos);
 	ls_model = glm::scale(ls_model, glm::vec3(0.2f));
@@ -199,14 +199,18 @@ int main() {
 			obj_shaderProgram->setVec3("cameraPos", camera->getCameraWorldPostion());
 
 			//obj_shaderProgram->setVec3("objectColor", glm::vec3(1.0f, 0.5f, 0.31f) );
-			obj_shaderProgram->setVec3("lightColor", glm::vec3(1.0f, 1.0f, 1.0f) );
-			obj_shaderProgram->setVec3("lightPos", lightPos);
+			//obj_shaderProgram->setVec3("lightColor", glm::vec3(1.0f, 1.0f, 1.0f) );
+			
 
 			obj_shaderProgram->setVec3("material.ambientFactor", glm::vec3(1.0f, 0.5f, 0.31f));
 			obj_shaderProgram->setVec3("material.diffuseFactor", glm::vec3(1.0f, 0.5f, 0.31f));
 			obj_shaderProgram->setVec3("material.specularFactor", glm::vec3(0.5f));
 			obj_shaderProgram->setFloat("material.shinniness", (GLfloat) 32.0f);
 
+			obj_shaderProgram->setVec3("light.position", lightPos);
+			obj_shaderProgram->setVec3("light.ambientLightColor",glm::vec3(0.2f, 0.2f, 0.2f));
+			obj_shaderProgram->setVec3("light.diffuseLightColor", glm::vec3(0.7f, 0.7f, 0.7f));
+			obj_shaderProgram->setVec3("light.specularLightColor", glm::vec3(1.0f, 1.0f, 1.0f));
 
 			bigSquare->bindVAO();
 				glDrawArrays(GL_TRIANGLES, 0, 36);
