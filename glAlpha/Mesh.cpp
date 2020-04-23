@@ -78,16 +78,16 @@ void Mesh::createMesh() {
 	);
 	glEnableVertexAttribArray(this->norm_location);
 
-	////texture coords
-	//glVertexAttribPointer(
-	//	this->tex_attribLocation,
-	//	this->tex_span,
-	//	this->tex_type,
-	//	GL_FALSE,
-	//	this->tex_stride,
-	//	this->tex_startingPosition
-	//);
-	//glEnableVertexAttribArray(this->tex_attribLocation);
+	//texture coords
+	glVertexAttribPointer(
+		this->tex_attribLocation,
+		this->tex_span,
+		this->tex_type,
+		GL_FALSE,
+		this->tex_stride,
+		this->tex_startingPosition
+	);
+	glEnableVertexAttribArray(this->tex_attribLocation);
 
 	
 	//glBindBuffer(GL_ARRAY_BUFFER, 0);

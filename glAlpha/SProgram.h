@@ -24,6 +24,7 @@ public:
 	void bindProgram();
 	void unbindProgram();
 
+	void setInt(const char* attribName, GLuint value);
 	void setFloat(const char* attribName, GLfloat value);
 	void setVec2(const char* attribName, glm::vec2 value);
 	void setVec3(const char* attribName, glm::vec3 value);

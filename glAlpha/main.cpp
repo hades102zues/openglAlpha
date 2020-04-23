@@ -34,13 +34,6 @@ int main() {
 	glm::vec3(1.5f,  0.2f, -1.5f),
 	glm::vec3(-1.3f,  1.0f, -1.5f)
 	};
-	GLfloat vertices1[] = {
-		// positions          // texture coords
-	   0.5f,  0.5f, 0.0f,     1.0f, 1.0f,					// top right
-	   0.5f, -0.5f, 0.0f,      1.0f, 0.0f,					// bottom right
-	  -0.5f, -0.5f, 0.0f,      0.0f, 0.0f,					// bottom left
-	  -0.5f,  0.5f, 0.0f,      0.0f, 1.0f					// top left 
-	};
 	GLuint indices[] = {
 		0, 1, 3,
 		1, 2, 3
@@ -48,71 +41,73 @@ int main() {
 
 
 	GLfloat vertices[] = {
-		-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-	 0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-	 0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-	 0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-	-0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-	-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+		// positions          // normals           // texture coords
+		   -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f,  0.0f,
+			0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f,  0.0f,
+			0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f,  1.0f,
+			0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f,  1.0f,
+		   -0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f,  1.0f,
+		   -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f,  0.0f,
 
-	-0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
-	 0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
-	 0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
-	 0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
-	-0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
-	-0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+		   -0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f,  0.0f,
+			0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f,  0.0f,
+			0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f,  1.0f,
+			0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f,  1.0f,
+		   -0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f,  1.0f,
+		   -0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f,  0.0f,
 
-	-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
-	-0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
-	-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
-	-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
-	-0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
-	-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+		   -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
+		   -0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  1.0f,  1.0f,
+		   -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f,  1.0f,
+		   -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f,  1.0f,
+		   -0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  0.0f,  0.0f,
+		   -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
 
-	 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
-	 0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-	 0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-	 0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-	 0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
-	 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+			0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
+			0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  1.0f,  1.0f,
+			0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f,  1.0f,
+			0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f,  1.0f,
+			0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  0.0f,  0.0f,
+			0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f,  0.0f,
 
-	-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
-	 0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
-	 0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
-	 0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
-	-0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
-	-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+		   -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f,  1.0f,
+			0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  1.0f,  1.0f,
+			0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f,  0.0f,
+			0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f,  0.0f,
+		   -0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  0.0f,  0.0f,
+		   -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f,  1.0f,
 
-	-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
-	 0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
-	 0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
-	 0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
-	-0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
-	-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f
+		   -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f,  1.0f,
+			0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  1.0f,  1.0f,
+			0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f,  0.0f,
+			0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f,  0.0f,
+		   -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  0.0f,  0.0f,
+		   -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f,  1.0f
 	};
 
 
 
 	//**GOTCHA**__remember to update the size, stride and starting position values as you change the arrays!!!
 	Mesh* bigSquare = new Mesh(
-		vertices, 216, 
-		0, 3, GL_FLOAT, sizeof(vertices[0]) * 6, (void*)0, //vertex attribs
+		vertices, 288, 
+		0, 3, GL_FLOAT, sizeof(vertices[0]) * 8, (void*)0, //vertex attribs
 		nullptr, 0,
-		2, 2, GL_FLOAT, sizeof(vertices[0]) * 6, (void*)(sizeof(vertices[0]) * 3), //tex coord attribs **(deprecated)**
-		1, 3, GL_FLOAT, sizeof(vertices[0]) * 6, (void*)(sizeof(vertices[0]) * 3) //norm attribs
+		2, 2, GL_FLOAT, sizeof(vertices[0]) * 8, (void*)(sizeof(vertices[0]) * 6), //tex coord attribs 
+		1, 3, GL_FLOAT, sizeof(vertices[0]) * 8, (void*)(sizeof(vertices[0]) * 3) //norm attribs
 
 	);
 	Mesh* lightSource = new Mesh(
-		vertices, 216,
-		0, 3, GL_FLOAT, sizeof(vertices[0]) * 6, (void*)0, //vertex attribs
+		vertices, 288,
+		0, 3, GL_FLOAT, sizeof(vertices[0]) * 8, (void*)0, //vertex attribs
 		nullptr, 0,
-		2, 2, GL_FLOAT, sizeof(vertices[0]) * 6, (void*)(sizeof(vertices[0]) * 3), //tex coord attribs **(deprecated)**
-		1, 3, GL_FLOAT, sizeof(vertices[0]) * 6, (void*)(sizeof(vertices[0]) * 3) //norm attribs
+		2, 2, GL_FLOAT, sizeof(vertices[0]) * 8, (void*)(sizeof(vertices[0]) * 6), //tex coord attribs 
+		1, 3, GL_FLOAT, sizeof(vertices[0]) * 8, (void*)(sizeof(vertices[0]) * 3) //norm attribs
 	);
 
 	//texture here 
 	Texture* container = new Texture("./container.jpg");
-
+	Texture* crate = new Texture("./textures/container2.png");
+	Texture* crate_spec = new Texture("./textures/container2_specular.png");
 
 	//shaders Structs
 	//------------------------------------------------------------
@@ -198,13 +193,15 @@ int main() {
 
 			obj_shaderProgram->setVec3("cameraPos", camera->getCameraWorldPostion());
 
-			//obj_shaderProgram->setVec3("objectColor", glm::vec3(1.0f, 0.5f, 0.31f) );
-			//obj_shaderProgram->setVec3("lightColor", glm::vec3(1.0f, 1.0f, 1.0f) );
-			
+		
+			glActiveTexture(GL_TEXTURE0);
+				crate->bindTexture();
+				obj_shaderProgram->setInt("material.diffuse", (GLuint)0);
 
-			obj_shaderProgram->setVec3("material.ambientFactor", glm::vec3(1.0f, 0.5f, 0.31f));
-			obj_shaderProgram->setVec3("material.diffuseFactor", glm::vec3(1.0f, 0.5f, 0.31f));
-			obj_shaderProgram->setVec3("material.specularFactor", glm::vec3(0.5f));
+			glActiveTexture(GL_TEXTURE1);
+				crate_spec->bindTexture();
+				obj_shaderProgram->setInt("material.specular", (GLuint)1);
+
 			obj_shaderProgram->setFloat("material.shinniness", (GLfloat) 32.0f);
 
 			obj_shaderProgram->setVec3("light.position", lightPos);
