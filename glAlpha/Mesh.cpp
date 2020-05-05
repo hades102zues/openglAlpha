@@ -2,7 +2,7 @@
 
 
 Mesh::Mesh() {
-	std::cout << "Incomplete Mesh created." << std::endl;
+	std::cout << "Incomplete Mesh created. Please use other overloaded constructor." << std::endl;
 }
 
 Mesh::Mesh(
@@ -10,6 +10,7 @@ Mesh::Mesh(
 						, GLuint location, int span, GLenum type, int stride, void* start
 						, GLuint* indices, int iSize
 						, GLuint tex_location, int tex_span, GLenum tex_type, int tex_stride, void* tex_start
+						, GLuint norm_location, int norm_span, GLenum norm_type, int norm_stride, void* norm_start
 ) {
 
 	this->vertices = vertices; 
@@ -29,6 +30,12 @@ Mesh::Mesh(
 	this->tex_stride = tex_stride;
 	this->tex_startingPosition = tex_start;
 
+	this->norm_location = norm_location;
+	this->norm_span = norm_span;
+	this->norm_type = norm_type;
+	this->norm_stride = norm_stride;
+	this->norm_start = norm_start;
+
 	this->createMesh();
 
 }
@@ -42,10 +49,13 @@ void Mesh::createMesh() {
 	glBindBuffer(GL_ARRAY_BUFFER, this->vboID);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(this->vertices[0]) * this->size, this->vertices, GL_STATIC_DRAW);
 
-	glGenBuffers(1, &this->eboID);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->eboID);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(this->indices[0]) * this->indicesSize, this->indices, GL_STATIC_DRAW);
+	if (this->indices != nullptr) {
 
+		glGenBuffers(1, &this->eboID);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->eboID);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(this->indices[0]) * this->indicesSize, this->indices, GL_STATIC_DRAW);
+
+	}
 	//vertex data
 	glVertexAttribPointer(
 		this->attribLocation,
@@ -56,6 +66,17 @@ void Mesh::createMesh() {
 		this->startingPostion
 	);
 	glEnableVertexAttribArray(this->attribLocation);
+
+	//normals
+	glVertexAttribPointer(
+		this->norm_location,
+		this->norm_span,
+		this->norm_type,
+		GL_FALSE,
+		this->norm_stride,
+		this->norm_start
+	);
+	glEnableVertexAttribArray(this->norm_location);
 
 	//texture coords
 	glVertexAttribPointer(

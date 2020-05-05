@@ -1,14 +1,20 @@
-Texture:
-   Texture class :
-       Fill out bind and unbind funcs to use Texture unit [x]
-   Shader Structs :
-        Adjusted to accept textures [x]
-   N/A shaderProgram []
-   Receiving Texture data [x]
-   Find and download a Texture []
-   Prep Main Test with texture []
-   Definnning the texture data []
+Diffusion:
+	Update the obj fragment to calculate diffusion.
 
- Test:
- Draw A Triangle
-   
+Speculation:
+
+
+
+
+
+
+
+
+=====DUMP========
+	//obj_shaderProgram->setVec3("objectColor", glm::vec3(1.0f, 0.5f, 0.31f) );
+	//obj_shaderProgram->setVec3("lightColor", glm::vec3(1.0f, 1.0f, 1.0f) );
+			
+
+	/*obj_shaderProgram->setVec3("material.ambientFactor", glm::vec3(1.0f, 0.5f, 0.31f));
+	obj_shaderProgram->setVec3("material.diffuseFactor", glm::vec3(1.0f, 0.5f, 0.31f));
+	obj_shaderProgram->setVec3("material.specularFactor", glm::vec3(0.5f));*/

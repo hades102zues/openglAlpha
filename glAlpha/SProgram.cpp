@@ -7,7 +7,7 @@ SProgram::SProgram() {
 		printf("Shader Program not created.");
 		return;
 	}
-
+	std::cout << "Insufficient arguements supplied to create a complete shader Program. Please use other overloaded constructor." << std::endl;
 }
 
 SProgram::SProgram(const char* vertexShaderPath, const char* fragmentShaderPath) {
@@ -97,10 +97,69 @@ void SProgram::unbindProgram() {
 	glUseProgram(0);
 
 }
+void SProgram::setInt(const char* attribName, GLuint value) {
+
+	GLuint location = this->getUniformLocation(attribName);
+
+	if ((int)location < 0)
+		printf("Supplied attribute : %s is Incorrect or not in use. \n", attribName);
+
+	glUniform1i(location, value);
+}
+
+void SProgram::setFloat(const char* attribName, GLfloat value) {
+
+	GLuint location = this->getUniformLocation(attribName);
+
+	if ((int)location < 0)
+		printf("Supplied attribute : %s is Incorrect or not in use. \n", attribName);
+
+	glUniform1f(location, value );
+
+}
+
+void SProgram::setVec2(const char* attribName, glm::vec2 value) {
+
+	GLuint location = this->getUniformLocation(attribName);
+
+	if ((int) location < 0)
+		printf("Supplied attribute : %s is Incorrect or not in use. \n", attribName);
+
+	glUniform2fv(location, 1, glm::value_ptr(value));
+
+}
+
+void SProgram::setVec3(const char* attribName, glm::vec3 value) {
+
+	GLuint location = this->getUniformLocation(attribName);
+	
+	if ((int) location < 0)
+		printf("Supplied attribute : %s is Incorrect or not in use. \n", attribName);
+
+	glUniform3fv(location, 1, glm::value_ptr(value));
+
+}
+
+void SProgram::setMat4(const char* attribName, glm::mat4 value) {
+
+	GLuint location = this->getUniformLocation(attribName);
+
+	if ((int) location < 0)
+		printf("Supplied attribute : %s is Incorrect or not in use. \n", attribName);
+
+	glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(value));
+
+}
 
 GLuint SProgram::getProgramID() {
 
 	return this->sprogram;
+
+}
+
+GLuint SProgram::getUniformLocation(const GLchar* name) {
+
+	return glGetUniformLocation(this->sprogram, name);
 
 }
 

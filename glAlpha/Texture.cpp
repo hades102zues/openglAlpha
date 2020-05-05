@@ -3,7 +3,7 @@
 
 Texture::Texture() {
 
-	std::cout << "Incomplete texture created." << std::endl;
+	std::cout << "Incomplete texture created. Please use other overloaded constructor." << std::endl;
 				
 }
 
@@ -18,19 +18,27 @@ Texture::Texture(const char* t_Path) {
 
 void Texture::loadTexture() {
 
-	glBindTexture(GL_TEXTURE_2D, this->textureID);
-
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-	int width, height, nrChannels;
-	unsigned char* data = stbi_load(this->path, &width, &height, &nrChannels, 0);
+	int width, height, nrComponents;
+	unsigned char* data = stbi_load(this->path, &width, &height, &nrComponents, 0);
 	
 	if (data) {
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+
+		GLenum format;
+		if (nrComponents == 1)
+			format = GL_RED;
+		else if (nrComponents == 3)
+			format = GL_RGB;
+		else if (nrComponents == 4)
+			format = GL_RGBA;
+
+		glBindTexture(GL_TEXTURE_2D, this->textureID);
+		glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
 		glGenerateMipmap(GL_TEXTURE_2D);
+
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	}
 	else
 	{
@@ -38,8 +46,6 @@ void Texture::loadTexture() {
 	}
 
 	stbi_image_free(data);
-	glBindTexture(GL_TEXTURE_2D, 0);
-
 
 }
 
